@@ -1,19 +1,17 @@
 import { Outlet } from 'react-router-dom'
-import { env } from '@/lib/env'
+import LandingHeader from '@/features/landing/components/LandingHeader.tsx'
 
 export function MarketingLayout() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
-      <header className="border-b border-gray-200 bg-brand-surface px-6 py-4 shadow-sm">
-        <h1 className="text-xl font-semibold tracking-tight text-brand-primary">
-          {env.appName}
-        </h1>
+    <div className="flex min-h-screen flex-col gap-[clamp(2.5rem,4.7vw,5rem)] bg-white">
+      <header className="relative flex h-[clamp(5rem,10vw,8.75rem)] min-w-[200px] overflow-visible bg-brand-primary">
+        <LandingHeader />
       </header>
-
       <main className="flex flex-1 flex-col">
         <Outlet />
       </main>
 
+      {/* for modal - Review later */}
       <div id="overlay-root" aria-hidden="true" />
     </div>
   )
