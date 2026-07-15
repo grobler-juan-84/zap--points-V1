@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { LandingPage } from '@/features/landing/LandingPage'
-import { MarketingLayout } from '@/layouts/MarketingLayout' 
+import { MarketingLayout } from '@/layouts/MarketingLayout'
+import { AuthLayout } from '@/layouts/AuthLayout'
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <MarketingLayout />,
+    element: <AuthLayout />,
     children: [
       {
         index: true,
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/signup',
-    element: <MarketingLayout />,
+    element: <AuthLayout />,
     children: [
       {
         index: true,
