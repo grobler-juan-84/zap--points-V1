@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { FC } from 'react';
 
 type AuthFormFooterProps = {
@@ -21,9 +20,9 @@ const AuthFormFooter: FC<AuthFormFooterProps> = ({
   return (
     <div className={className}>
       {promptText ? <span className={promptClassName}>{promptText} </span> : null}
-      <Link href={linkHref} className={linkClassName}>
+      {/* <Link href={linkHref} className={linkClassName}>
         {linkText}
-      </Link>
+      </Link> */}
     </div>
   );
 };

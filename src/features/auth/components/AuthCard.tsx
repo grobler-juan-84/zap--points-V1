@@ -1,11 +1,11 @@
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type AuthCardProps = {
   children: ReactNode;
   className?: string;
 };
 
-const AuthCard: FC<AuthCardProps> = ({ children, className = '' }) => {
+const AuthCard = ({ children, className = '' }: AuthCardProps) => {
   return (
     <div className={`bg-brand-tertiary rounded-xl shadow-xl relative ${className}`}>
       {children}

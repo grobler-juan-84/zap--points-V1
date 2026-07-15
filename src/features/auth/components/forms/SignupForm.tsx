@@ -1,12 +1,11 @@
 'use client';
-
-import Image from 'next/image';
+// import Image from 'next/image';
 import type { FC } from 'react';
 
-import TextInput from '@/components/ui/TextInput';
-import SelectInput from '@/components/ui/SelectInput';
-import PasswordInput from '@/components/ui/PasswordInput';
-import InlineErrorText from '@/components/ui/InlineErrorText';
+// import TextInput from '@/components/ui/TextInput';
+// import SelectInput from '@/components/ui/SelectInput';
+// import PasswordInput from '@/components/ui/PasswordInput';
+// import InlineErrorText from '@/components/ui/InlineErrorText';
 import AuthBackLink from '@/features/auth/components/AuthBackLink';
 import AuthCard from '@/features/auth/components/AuthCard';
 import AuthFormHeader from '@/features/auth/components/AuthFormHeader';

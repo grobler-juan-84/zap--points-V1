@@ -1,7 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { LandingPage } from '@/features/landing/LandingPage'
+
 import { MarketingLayout } from '@/layouts/MarketingLayout'
 import { AuthLayout } from '@/layouts/AuthLayout'
+
+import { LandingPage } from '@/features/landing/LandingPage'
+import { LoginPage } from '@/features/auth/LoginPage'
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +23,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LandingPage />,
+        element: <LoginPage />,
       },
     ],
   },

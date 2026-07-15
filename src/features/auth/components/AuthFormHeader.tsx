@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import type { FC } from 'react';
+import kis_logo from '@/assets/auth/auth-logo.png'
 
 type AuthFormHeaderProps = {
   title: string;
@@ -7,12 +6,12 @@ type AuthFormHeaderProps = {
   className?: string;
 };
 
-const AuthFormHeader: FC<AuthFormHeaderProps> = ({ title, subtitle, className = '' }) => {
+const AuthFormHeader = ({ title, subtitle, className = '' }: AuthFormHeaderProps) => {
   return (
     <div className={`flex flex-row gap-1 px-2 md:px-0 ${className}`}>
-      <div className="flex md:flex-row justify-start items-center w-150 md:w-full">
+      <div className="flex flex-col justify-center items-start w-150 md:w-full">
         <div>
-          <h1 className="text-3xl md:text-6xl font-extrabold text-brand-purple font-spartan">
+          <h1 className="text-3xl md:text-6xl font-extrabold text-brand-primary font-spartan">
             {title}
           </h1>
           {subtitle ? (
@@ -22,14 +21,12 @@ const AuthFormHeader: FC<AuthFormHeaderProps> = ({ title, subtitle, className = 
           ) : null}
         </div>
       </div>
-      <div className="flex justify-end w-50 md:w-full items-start">
-        <Image
-          src="/images/auth/auth-login-kis-logo.png"
+      <div className="flex justify-end items-start">
+        <img src={kis_logo}
           alt="KIS Points logo"
-          width={180}
-          height={180}
-          priority
-          className="h-auto w-20 md:w-45"
+          width={1}
+          height={1}
+          className="h-auto w-[clamp(3.5rem,7dvw,15rem)]"
         />
       </div>
     </div>
@@ -37,3 +34,5 @@ const AuthFormHeader: FC<AuthFormHeaderProps> = ({ title, subtitle, className = 
 };
 
 export default AuthFormHeader;
+
+
