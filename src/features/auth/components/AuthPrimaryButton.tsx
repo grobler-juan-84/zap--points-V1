@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import PrimaryButton from '@/components/ui/PrimaryButton';
 
 type AuthPrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -6,12 +6,9 @@ type AuthPrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
-const AuthPrimaryButton: FC<AuthPrimaryButtonProps> = ({ children, className = '', ...props }) => {
-  const baseClassName =
-    'h-12 w-full px-8 rounded-[18px] bg-brand-pink text-white font-bold text-2xl tracking-tight hover:brightness-95 transition focus:outline-none focus:ring-4 focus:ring-brand-pink/30 font-spartan disabled:opacity-60';
-
+const AuthPrimaryButton = ({ children, className = '', ...props }: AuthPrimaryButtonProps) => {
   return (
-    <PrimaryButton className={`${baseClassName} ${className}`.trim()} {...props}>
+    <PrimaryButton size="lg" fullWidth className={`font-spartan ${className}`.trim()} {...props}>
       {children}
     </PrimaryButton>
   );
