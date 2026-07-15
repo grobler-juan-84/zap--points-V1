@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 
 :root {
   --background: #fafafa;
@@ -10,11 +11,10 @@
   --color-foreground: var(--foreground);
   --color-brand-accent: #f59e0b;
   --color-brand-surface: #ffffff;
-  --color-brand-primary: #4A3B8D;
-  --color-brand-secondary: #D96B7B;
-  --color-brand-tertiary: #FCF1F0;
-  --font-sans: ui-sans-serif, system-ui, sans-serif, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --color-brand-primary: #4a3b8d;
+  --color-brand-secondary: #d96b7b;
+  --color-brand-tertiary: #fcf1f0;
+  --font-sans: 'League Spartan', sans-serif;
 }
 
 body {

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 type LandingNavLinkProps = {
   href: string;
@@ -8,8 +9,8 @@ type LandingNavLinkProps = {
 export default function LandingNavLink({ href, children }: LandingNavLinkProps) {
   return (
     <Link
-      href={href}
-      className="text-white font-semibold text-2xl md:text-5xl font-spartan hover:opacity-80 transition"
+      to={href}
+      className="text-white font-semibold text-[clamp(1.5rem,3.5vw,5rem)] font-league-spartan hover:opacity-80 transition"
     >
       {children}
     </Link>
