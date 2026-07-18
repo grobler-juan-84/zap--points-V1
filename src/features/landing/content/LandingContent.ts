@@ -5,4 +5,5 @@ export const landingContent = {
     'AI Teacher Assistance',
     'Teacher Resources',
   ],
+  name: ['Smart Classroom', 'Smart Classroom'],
 } as const

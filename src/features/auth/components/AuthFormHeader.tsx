@@ -6,27 +6,24 @@ type AuthFormHeaderProps = {
   className?: string;
 };
 
-const AuthFormHeader = ({ title, subtitle, className = '' }: AuthFormHeaderProps) => {
+const AuthFormHeader = ({
+  title,
+  className = '',
+}: AuthFormHeaderProps) => {
   return (
-    <div className={`flex flex-row gap-1 px-2 md:px-0 ${className}`}>
-      <div className="flex flex-col justify-center items-start w-150 md:w-full">
-        <div>
-          <h1 className="text-3xl md:text-6xl font-extrabold text-brand-primary font-spartan">
-            {title}
-          </h1>
-          {subtitle ? (
-            <p className="mt-2 text-base md:text-lg text-black/70 font-spartan">
-              {subtitle}
-            </p>
-          ) : null}
-        </div>
+    <div className={`flex flex-row ${className}`}>
+      <div className="flex flex-col justify-center items-start">
+        <h1 className="text-[clamp(1.25rem,4vw,4.25rem)] font-extrabold text-brand-primary font-league-spartan leading-none">
+          {title}
+        </h1>
       </div>
       <div className="flex justify-end items-start">
-        <img src={kis_logo}
+        <img
+          src={kis_logo}
           alt="KIS Points logo"
           width={1}
           height={1}
-          className="h-auto w-[clamp(3.5rem,7dvw,15rem)]"
+          className="h-auto w-[clamp(3.5rem,10dvw,15rem)]"
         />
       </div>
     </div>
@@ -34,5 +31,3 @@ const AuthFormHeader = ({ title, subtitle, className = '' }: AuthFormHeaderProps
 };
 
 export default AuthFormHeader;
-
-

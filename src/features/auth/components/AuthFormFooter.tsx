@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 type AuthFormFooterProps = {
   promptText?: string;
@@ -9,20 +9,20 @@ type AuthFormFooterProps = {
   linkClassName?: string;
 };
 
-const AuthFormFooter: FC<AuthFormFooterProps> = ({
+const AuthFormFooter = ({
   promptText,
   linkText,
   linkHref,
   className = 'mt-6 text-center text-sm text-[18px]',
   promptClassName = 'text-gray-600 font-spartan',
-  linkClassName = 'text-brand-pink text-[18px] font-semibold font-spartan hover:underline',
-}) => {
+  linkClassName = 'text-brand-secondary text-[18px] font-semibold font-spartan hover:underline',
+}: AuthFormFooterProps) => {
   return (
     <div className={className}>
       {promptText ? <span className={promptClassName}>{promptText} </span> : null}
-      {/* <Link href={linkHref} className={linkClassName}>
+      <Link to={linkHref} className={linkClassName}>
         {linkText}
-      </Link> */}
+      </Link>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const PrimaryButton = ({
   ...props
 }: PrimaryButtonProps) => {
   const base =
-    'rounded-lg bg-brand-secondary text-white font-bold tracking-tight hover:brightness-95 transition focus:outline-none focus:ring-4 focus:ring-brand-pink/30 disabled:opacity-60';
+    'rounded-lg bg-brand-secondary text-white font-bold tracking-tight hover:brightness-95 transition focus:outline-none focus:ring-4 focus:ring-brand-secondary/30 disabled:opacity-60';
 
   const sizes = {
     md: 'h-10 px-6 text-base',
