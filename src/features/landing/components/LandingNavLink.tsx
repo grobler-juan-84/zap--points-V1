@@ -8,7 +8,7 @@ type LandingNavLinkProps = {
 
 export default function LandingNavLink({ href, children }: LandingNavLinkProps) {
   return (
-    <Link to={href} className="text-white font-semibold text-[clamp(1.5rem,3.5vw,5rem)] font-league-spartan hover:opacity-80 transition">
+    <Link to={href} className="text-white font-semibold text-[clamp(1.5rem,2.5vw,5rem)] font-league-spartan hover:opacity-80 transition">
       {children}
     </Link>
   );
