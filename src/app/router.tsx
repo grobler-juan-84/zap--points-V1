@@ -1,6 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { MarketingLayout } from '@/layouts/MarketingLayout'
+import { AuthLayout } from '@/layouts/AuthLayout'
 import { LandingPage } from '@/features/landing/LandingPage'
-import { MarketingLayout } from '@/layouts/MarketingLayout' 
+import { LoginPage } from '@/features/auth/LoginPage'
+import { SignupPage } from '@/features/auth/SignupPage'
+import { ForgotPasswordPage } from '@/features/auth/ForgotPasswordPage'
+import { ResetPasswordPage } from '@/features/auth/ResetPasswordPage'
+import { DashboardPage } from '@/features/dashboard/DashboardPage'
 
 export const router = createBrowserRouter([
   {
@@ -15,22 +21,46 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <MarketingLayout />,
+    element: <AuthLayout />,
     children: [
       {
         index: true,
-        element: <LandingPage />,
+        element: <LoginPage />,
       },
     ],
   },
   {
     path: '/signup',
-    element: <MarketingLayout />,
+    element: <AuthLayout />,
     children: [
       {
         index: true,
-        element: <LandingPage />,
+        element: <SignupPage />,
       },
     ],
+  },
+  {
+    path: '/forgot-password',
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <ForgotPasswordPage />,
+      },
+    ],
+  },
+  {
+    path: '/reset-password',
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <ResetPasswordPage />,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <DashboardPage />,
   },
 ])

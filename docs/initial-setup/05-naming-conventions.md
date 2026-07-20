@@ -6,11 +6,13 @@ Adapted from KIS-Points. Consistent naming makes the codebase easier to navigate
 
 | Pattern | Tier | Example |
 |---------|------|---------|
-| `*Layout.tsx`, `MarketingLayout.tsx` | Tier 1 | Layout scaffolding |
-| `*View.tsx` | Tier 2 | Feature route entry |
+| `*Layout.tsx`, `MarketingLayout.tsx`, `AuthLayout.tsx` | Tier 1 | Layout scaffolding |
+| `*Page.tsx` | Tier 2 | Feature route entry (`LoginPage`, `LandingPage`) |
 | `*Workspace.tsx` | Tier 2 | Stage/workspace container |
 | `*Host.tsx` | Tier 2 | Modal or tool orchestrator |
-| Component name (PascalCase) | Tier 3 | `Button`, `StudentCard` |
+| Component name (PascalCase) | Tier 3 | `Button`, `AuthCard`, `LoginForm` |
+
+> **Note:** Prefer `*Page` over `*View` for route entry components (see decision log).
 
 ## Data Layers
 
