@@ -22,7 +22,9 @@ export const authContent = {
   titleMr: 'Mr',
   titleMrs: 'Mrs',
   titleMs: 'Ms',
-  roleUser: 'User',
+  roleTeacher: 'Teacher',
+  roleStudent: 'Student',
+  roleParent: 'Parent',
   roleAdmin: 'Admin',
 
   // forgot password

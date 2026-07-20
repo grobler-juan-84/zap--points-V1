@@ -8,15 +8,23 @@ Establish core stack, folder structure, architectural boundaries, tooling, docum
 
 See [01-implemented-in-phase1.md](01-implemented-in-phase1.md).
 
-## Phase 2 — Authentication and Persistence (Planned)
+## Phase 2 — Authentication and Persistence (Auth flows complete; Persistence planned)
 
-Likely scope (to be refined):
+### Auth flows (complete)
 
-- Supabase project setup
-- Authentication flows (login, signup, password reset)
-- Database schema
-- Protected routes
-- User session management
+- Supabase project + JS client setup
+- Authentication UI: login, signup, forgot password (OTP), reset password
+- Auth service + feature hooks; copy in `authContent.ts`
+- `AuthLayout` / `AuthCard` / shared auth chrome
+
+See [phase2/00-phase2-goal.md](phase2/00-phase2-goal.md) and [phase2/01-implemented-in-phase2.md](phase2/01-implemented-in-phase2.md).
+
+### Persistence and session (planned — remaining Phase 2)
+
+- Database schema and RLS
+- Protected routes / session guards
+- Session management UI (sign-out, auth state listener)
+- Dashboard beyond signed-in placeholder
 
 ## Phase 3 — Core Features (Planned)
 
@@ -35,4 +43,4 @@ Likely scope (to be refined):
 
 ## Notes
 
-Phases 2–4 are placeholders. Detailed specs will be created in `docs/in-progress/phaseN/` when each phase begins.
+Phase 2 auth specs live under `docs/in-progress/phase2/`. Detailed specs for Phase 3+ will be created in `docs/in-progress/phaseN/` when each phase begins.

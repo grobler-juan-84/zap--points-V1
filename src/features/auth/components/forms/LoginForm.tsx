@@ -3,10 +3,10 @@ import { authContent } from '@/features/auth/content/authContent';
 import FormLabel from '@/components/ui/FormLabel';
 import TextInput from '@/components/ui/TextInput';
 import PasswordInput from '@/components/ui/PasswordInput';
-import InlineErrorText from '@/components/ui/InlineErrorText';
 import AuthFormHeader from '@/features/auth/components/AuthFormHeader';
 import AuthFormFooter from '@/features/auth/components/AuthFormFooter';
 import AuthPrimaryButton from '@/features/auth/components/AuthPrimaryButton';
+import AuthFormFeedback from '@/features/auth/components/AuthFormFeedback';
 
 type LoginFormProps = {
   email: string;
@@ -97,16 +97,7 @@ const LoginForm = ({
             </AuthPrimaryButton>
           </div>
 
-          {error && (
-            <InlineErrorText className="text-sm text-red-600 text-center">
-              {error}
-            </InlineErrorText>
-          )}
-          {success && (
-            <InlineErrorText className="text-sm text-green-600 text-center">
-              {success}
-            </InlineErrorText>
-          )}
+          <AuthFormFeedback error={error} success={success} />
         </div>
       </form>
       <AuthFormFooter

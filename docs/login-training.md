@@ -207,9 +207,12 @@ function TextInput({
   return <input className={className} {...props} />
 }
 
-function IconEye({ hidden = false }: { hidden?: boolean }) {
-  // Simplified: real icon has two SVG variants (eye open / eye crossed).
-  return <span aria-hidden>{hidden ? '🙈' : '👁'}</span>
+// Real app: PasswordVisibleIcon / PasswordHiddenIcon under components/ui/icons/
+function PasswordVisibleIcon() {
+  return <span aria-hidden>👁</span>
+}
+function PasswordHiddenIcon() {
+  return <span aria-hidden>🙈</span>
 }
 
 function PasswordInput({
@@ -256,7 +259,7 @@ function PasswordInput({
         className="absolute top-1/2 right-3 -translate-y-1/2 text-black/50"
         aria-label={visible ? 'Hide password' : 'Show password'}
       >
-        <IconEye hidden={visible} />
+        {visible ? <PasswordHiddenIcon /> : <PasswordVisibleIcon />}
       </button>
     </div>
   )
@@ -270,6 +273,29 @@ function InlineErrorText({
   className?: string
 }) {
   return <p className={className}>{children}</p>
+}
+
+function AuthFormFeedback({
+  error,
+  success,
+}: {
+  error?: string
+  success?: string
+}) {
+  return (
+    <>
+      {error && (
+        <InlineErrorText className="text-center text-sm text-red-600">
+          {error}
+        </InlineErrorText>
+      )}
+      {success && (
+        <InlineErrorText className="text-center text-sm text-green-600">
+          {success}
+        </InlineErrorText>
+      )}
+    </>
+  )
 }
 
 function PrimaryButton({
@@ -310,9 +336,10 @@ function AuthCard({
   children: ReactNode
   className?: string
 }) {
+  // Default width/padding live on the card; pages only pass overrides when needed.
   return (
     <div
-      className={`bg-brand-tertiary relative rounded-xl shadow-xl ${className}`}
+      className={`bg-brand-tertiary relative w-9/10 rounded-xl px-6 pb-2 shadow-xl sm:w-1/3 ${className}`}
     >
       {children}
     </div>
@@ -320,19 +347,30 @@ function AuthCard({
 }
 
 function AuthBackLink({
-  href = '/',
+  fallbackTo = '/',
   className = '',
   style,
   strokeWidth = 2,
 }: {
-  href?: string
+  fallbackTo?: string
   className?: string
   style?: CSSProperties
   strokeWidth?: number
 }) {
+  const navigate = useNavigate()
+
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1)
+    } else {
+      navigate(fallbackTo)
+    }
+  }
+
   return (
-    <Link
-      to={href}
+    <button
+      type="button"
+      onClick={handleBack}
       className={`absolute z-10 text-[#DE8680] transition-colors hover:text-[#E89A94] ${className}`}
       style={style}
       aria-label="Go back"
@@ -351,7 +389,7 @@ function AuthBackLink({
           d="M15 19l-8-8 8-8"
         />
       </svg>
-    </Link>
+    </button>
   )
 }
 
@@ -589,16 +627,7 @@ function LoginForm({
             </AuthPrimaryButton>
           </div>
 
-          {error && (
-            <InlineErrorText className="text-center text-sm text-red-600">
-              {error}
-            </InlineErrorText>
-          )}
-          {success && (
-            <InlineErrorText className="text-center text-sm text-green-600">
-              {success}
-            </InlineErrorText>
-          )}
+          <AuthFormFeedback error={error} success={success} />
         </div>
       </form>
 
@@ -629,29 +658,30 @@ function LoginPage() {
   } = useLogin()
 
   // Tier 2 page: owns hooks, passes props down to Tier 3 form.
+  // Layout owns back link + centering; AuthCard owns default width.
   return (
-    <main className="flex h-screen flex-row items-center justify-center">
-      <AuthBackLink className="top-6 left-6" href="/" />
-      <AuthCard className="w-9/10 px-6 pb-2 sm:w-1/3">
-        <LoginForm
-          email={loginEmail}
-          password={loginPassword}
-          isLoading={isLoading}
-          error={error}
-          success={success}
-          onEmailChange={setLoginEmail}
-          onPasswordChange={setLoginPassword}
-          onSubmit={handleLogin}
-        />
-      </AuthCard>
-    </main>
+    <AuthCard>
+      <LoginForm
+        email={loginEmail}
+        password={loginPassword}
+        isLoading={isLoading}
+        error={error}
+        success={success}
+        onEmailChange={setLoginEmail}
+        onPasswordChange={setLoginPassword}
+        onSubmit={handleLogin}
+      />
+    </AuthCard>
   )
 }
 
 function AuthLayout() {
   return (
     <div className="bg-brand-primary flex min-h-screen flex-col">
-      <main className="flex flex-1 flex-col">
+      <header className="bg-brand-primary relative flex h-[clamp(5rem,10vw,8.75rem)] min-w-[200px] overflow-visible">
+        <AuthBackLink className="top-6 left-6" />
+      </header>
+      <main className="flex flex-row items-start justify-center">
         <Outlet /> {/* LoginPage renders here when path is /login */}
       </main>
     </div>
@@ -723,7 +753,7 @@ What happens when the user clicks **Login**:
 6. **Supabase session** — on success, the client stores the session (JWT + refresh token) in browser storage so later requests can stay authenticated.
 7. **Navigation** — `navigate('/dashboard')` swaps the route. The success string is set, but you usually never see it because navigation happens immediately.
 
-Error path: Supabase returns `{ error }` → service throws `Error(message)` → `runAction` catch → red `InlineErrorText` on the form. The fallback `authContent.loginError` is only used for non-`Error` throws.
+Error path: Supabase returns `{ error }` → service throws `Error(message)` → `runAction` catch → `AuthFormFeedback` shows red text on the form. The fallback `authContent.loginError` is only used for non-`Error` throws.
 
 ---
 
@@ -739,6 +769,7 @@ Error path: Supabase returns `{ error }` → service throws `Error(message)` →
 | Auth chrome     | `src/layouts/AuthLayout.tsx`                       |
 | Page wiring     | `src/features/auth/LoginPage.tsx`                  |
 | Form UI         | `src/features/auth/components/forms/LoginForm.tsx` |
+| Form feedback   | `src/features/auth/components/AuthFormFeedback.tsx`|
 | Copy            | `src/features/auth/content/authContent.ts`         |
 | Login hook      | `src/features/auth/hooks/useLogin.ts`              |
 | Feedback hook   | `src/features/auth/hooks/useAuthFeedback.ts`       |
@@ -758,7 +789,21 @@ Error path: Supabase returns `{ error }` → service throws `Error(message)` →
 - **Env values are not validated** — empty `VITE_SUPABASE_*` become `''` and client creation/auth calls fail at runtime.
 - **SPA hosting** — production servers must fall back unknown paths (like `/login`) to `index.html` so React Router can handle them.
 - **Validation is HTML-only** — `required` + `type="email"`; no password policy or trimming in the hook.
-- **IconEye** in this doc is simplified; the real component uses two SVG paths.
+- **Password icons** in this doc are simplified placeholders; production uses `PasswordVisibleIcon` / `PasswordHiddenIcon`.
+
+---
+
+## Related flows
+
+Same layers, different pages/hooks/forms:
+
+| Route | Page | Hook |
+|-------|------|------|
+| `/signup` | `SignupPage` | `useSignup` |
+| `/forgot-password` | `ForgotPasswordPage` | `useForgotPassword` |
+| `/reset-password` | `ResetPasswordPage` | `useResetPassword` |
+
+All sit under `AuthLayout`, use `AuthCard`, and call into `auth.service.ts`. See [phase2/02-phase2-learnings.md](in-progress/phase2/02-phase2-learnings.md) for lessons from building these flows.
 
 ---
 

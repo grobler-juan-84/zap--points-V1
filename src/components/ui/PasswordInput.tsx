@@ -2,7 +2,8 @@
 
 import { useState, type ChangeEvent } from 'react';
 
-import IconEye from '@/components/ui/icons/iconEye';
+import PasswordHiddenIcon from '@/components/ui/icons/PasswordHiddenIcon';
+import PasswordVisibleIcon from '@/components/ui/icons/PasswordVisibleIcon';
 import TextInput from '@/components/ui/TextInput';
 
 type PasswordInputProps = {
@@ -53,7 +54,7 @@ const PasswordInput = ({
         className={`${toggleButtonClassName} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
         aria-label={visible ? 'Hide password' : 'Show password'}
       >
-        <IconEye hidden={visible} />
+        {visible ? <PasswordHiddenIcon /> : <PasswordVisibleIcon />}
       </button>
     </div>
   );

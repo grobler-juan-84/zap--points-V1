@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 import FormLabel from '@/components/ui/FormLabel';
 import TextInput from '@/components/ui/TextInput';
-import InlineErrorText from '@/components/ui/InlineErrorText';
 import AuthFormHeader from '@/features/auth/components/AuthFormHeader';
 import AuthPrimaryButton from '@/features/auth/components/AuthPrimaryButton';
 import { authContent } from '@/features/auth/content/authContent';
 import type { ForgotPasswordStep } from '@/features/auth/hooks/useForgotPassword';
+import AuthFormFeedback from '@/features/auth/components/AuthFormFeedback';
 
 type ForgotPasswordFormProps = {
   step: ForgotPasswordStep;
@@ -148,16 +148,7 @@ const ForgotPasswordForm = ({
         </form>
       )}
 
-      {error && (
-        <InlineErrorText className="mt-4 text-sm text-red-600 text-center">
-          {error}
-        </InlineErrorText>
-      )}
-      {success && (
-        <InlineErrorText className="mt-4 text-sm text-green-600 text-center">
-          {success}
-        </InlineErrorText>
-      )}
+      <AuthFormFeedback error={error} success={success} />
 
       <div className="mt-6 text-center text-sm text-[18px]">
         <Link

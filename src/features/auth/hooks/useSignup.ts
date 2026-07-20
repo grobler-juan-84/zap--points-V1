@@ -24,7 +24,7 @@ export function useSignup() {
   const [signupEmail, setSignupEmail] = useState('')
   const [signupPassword, setSignupPassword] = useState('')
   const [signupConfirmPassword, setSignupConfirmPassword] = useState('')
-  const [signupRole, setSignupRole] = useState('user')
+  const [signupRole, setSignupRole] = useState('teacher')
 
   useEffect(() => {
     return () => {

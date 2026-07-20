@@ -1,6 +1,6 @@
 # Folder Structure
 
-Initial `src/` layout established in Phase 1. Folders are populated only when they have a genuine responsibility.
+`src/` layout after Phase 1 foundation and Phase 2 auth. Folders are populated only when they have a genuine responsibility.
 
 ```text
 src/
@@ -11,23 +11,37 @@ src/
 │       └── AppProviders.tsx    # Router and future global providers
 │
 ├── layouts/
-│   └── MarketingLayout.tsx    # Tier 1 — header, outlet, overlay mount
+│   ├── MarketingLayout.tsx     # Tier 1 — landing chrome
+│   └── AuthLayout.tsx          # Tier 1 — auth chrome (back + centered outlet)
 │
 ├── features/
-│   └── landing/
-│       └── LandingPage.tsx     # Tier 2 — foundation landing screen
+│   ├── landing/
+│   │   └── LandingPage.tsx
+│   ├── auth/
+│   │   ├── LoginPage.tsx
+│   │   ├── SignupPage.tsx
+│   │   ├── ForgotPasswordPage.tsx
+│   │   ├── ResetPasswordPage.tsx
+│   │   ├── components/         # AuthCard, AuthBackLink, forms, …
+│   │   ├── content/
+│   │   │   └── authContent.ts
+│   │   └── hooks/              # useLogin, useSignup, useAuthFeedback, …
+│   └── dashboard/
+│       └── DashboardPage.tsx   # Placeholder post-login screen
 │
 ├── components/
-│   └── ui/
-│       └── Button.tsx          # Tier 3 — shared UI primitive
+│   └── ui/                     # Tier 3 — Button, TextInput, PasswordInput, …
 │
 ├── hooks/                      # Layer 1 — cross-feature hooks (empty until needed)
 ├── stores/
 │   └── useAppStore.ts          # Layer 2 — minimal verification store
-├── services/                   # Layer 3 — external data access (future)
+├── services/
+│   └── auth.service.ts         # Layer 3 — Supabase Auth API
 │
 ├── lib/
-│   └── env.ts                  # Typed environment variable access
+│   ├── env.ts                  # Typed environment variable access
+│   └── supabase/
+│       └── client.ts           # Supabase browser client
 │
 ├── types/
 │   └── index.ts                # Shared application types
@@ -64,3 +78,4 @@ Configured in `tsconfig.app.json` and `vite.config.ts`:
 - Feature-scoped hooks/stores/components go inside `src/features/<feature>/` when introduced.
 - Cross-feature shared code goes in top-level `hooks/`, `stores/`, or `components/ui/`.
 - Empty folders are not created with placeholder files.
+- Auth pages stay thin: hook wiring + `AuthCard`; shared chrome lives in `AuthLayout`.

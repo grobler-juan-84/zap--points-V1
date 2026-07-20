@@ -3,10 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { authContent } from '@/features/auth/content/authContent'
 import { useAuthFeedback } from '@/features/auth/hooks/useAuthFeedback'
-import {
-  getSessionUser,
-  updateCurrentUserPassword,
-} from '@/services/auth.service'
+import { getSession, updateCurrentUserPassword } from '@/services/auth.service'
 
 export function useResetPassword() {
   const navigate = useNavigate()
@@ -26,7 +23,7 @@ export function useResetPassword() {
   const [hasSession, setHasSession] = useState(false)
 
   const checkResetSession = useCallback(async () => {
-    const session = await getSessionUser()
+    const session = await getSession()
     setHasSession(!!session)
     setIsSessionChecked(true)
   }, [])

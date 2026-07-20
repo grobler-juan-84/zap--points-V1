@@ -1,22 +1,33 @@
 import type { CSSProperties } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type AuthBackLinkProps = {
-  href?: string;
+  fallbackTo?: string;
   className?: string;
   style?: CSSProperties;
   strokeWidth?: number;
 };
 
 const AuthBackLink = ({
-  href = '/',
+  fallbackTo = '/',
   className = '',
   style,
   strokeWidth = 2,
 }: AuthBackLinkProps) => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate(fallbackTo);
+    }
+  };
+
   return (
-    <Link
-      to={href}
+    <button
+      type="button"
+      onClick={handleBack}
       className={`absolute text-[#DE8680] hover:text-[#E89A94] transition-colors z-10 ${className}`}
       style={style}
       aria-label="Go back"
@@ -35,7 +46,7 @@ const AuthBackLink = ({
           d="M15 19l-8-8 8-8"
         />
       </svg>
-    </Link>
+    </button>
   );
 };
 

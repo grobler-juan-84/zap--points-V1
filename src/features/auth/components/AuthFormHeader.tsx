@@ -12,7 +12,7 @@ const AuthFormHeader = ({
 }: AuthFormHeaderProps) => {
   return (
     <div className={`flex flex-row ${className}`}>
-      <div className="flex flex-col justify-center items-start">
+      <div className="flex flex-col w-5/6 justify-center items-start">
         <h1 className="text-[clamp(1.25rem,4vw,4.25rem)] font-extrabold text-brand-primary font-league-spartan leading-none">
           {title}
         </h1>
