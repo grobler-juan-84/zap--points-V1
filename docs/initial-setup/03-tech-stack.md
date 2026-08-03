@@ -11,6 +11,7 @@
 | **Zustand** | Global client state (Layer 2) |
 | **Framer Motion** | Animation library |
 | **React Router** | Client-side routing |
+| **shadcn/ui** | Accessible UI primitives (Radix + Tailwind), copied into the repo via CLI |
 | **Supabase JS** | Auth (Phase 2) and future persistence |
 
 ## State Management
@@ -27,6 +28,7 @@
 | ESLint | Linting (TypeScript + React Hooks + React Refresh) |
 | Prettier | Code formatting with Tailwind class sorting |
 | Path aliases | `@/` maps to `src/` |
+| shadcn CLI | `npx shadcn@latest add <component>` into `src/components/ui` |
 
 ## Backend / Platform
 
